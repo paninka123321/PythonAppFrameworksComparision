@@ -6,7 +6,7 @@ function CreateTask() {
   const [dueDate, setDueDate] = useState("");
 
   const submitTask = async () => {
-    await fetch("http://127.0.0.1:8000/api/tasks/", {
+    await fetch("http://127.0.0.1:8002/api/tasks/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

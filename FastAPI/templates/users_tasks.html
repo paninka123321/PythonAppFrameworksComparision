@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Przegląd Zadań - FastAPI</title>
+    <link rel="stylesheet" href="/static/theme.css">
+    <style> .page-title{ margin-bottom:18px; text-align:center }</style>
+</head>
+<body>
+  <div class="page-container">
+    <h1 class="page-title">📋 Przegląd Zadań (FastAPI)</h1>
+    <div class="grid">
+      {% for user in users %}
+        <div class="card user-card">
+          <h2 class="user-title">👤 {{ user.first_name }} {{ user.last_name }} <small class="muted">(@{{ user.username }})</small></h2>
+          <ul class="task-list">
+            {% for task in user.tasks %}
+              <li class="task-item">
+                <span class="task-title">{{ task.title }}</span>
+                <span class="status">{% if task.due_date %}{{ task.due_date }}{% else %}—{% endif %}</span>
+              </li>
+            {% else %}
+              <li class="empty">Brak przypisanych zadań.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

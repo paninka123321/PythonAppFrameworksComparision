@@ -12,17 +12,17 @@ function TasksBoard() {
     const headers = { Authorization: `Bearer ${token}` };
 
     // 1. Get Tasks
-    fetch("http://127.0.0.1:8000/api/tasks/", { headers })
+    fetch("http://127.0.0.1:8002/api/tasks/", { headers })
       .then((res) => res.json())
       .then((data) => setTasks(data));
 
     // 2. Get Users (NEW)
-    fetch("http://127.0.0.1:8000/api/users/", { headers })
+    fetch("http://127.0.0.1:8002/api/users/", { headers })
       .then((res) => res.json())
       .then((data) => setAllUsers(data));
     
     // 3. Get Current User info
-    fetch("http://127.0.0.1:8000/api/me/", { headers })
+    fetch("http://127.0.0.1:8002/api/me/", { headers })
       .then((res) => res.json())
       .then((data) => setCurrentUser(data));
   }, []);
@@ -31,7 +31,7 @@ function TasksBoard() {
     // Optimistic UI update
     setTasks(tasks.map(t => t.id === id ? { ...t, status: newStatus } : t));
 
-    await fetch(`http://127.0.0.1:8000/api/tasks/${id}/`, {
+    await fetch(`http://127.0.0.1:8002/api/tasks/${id}/`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ function TasksBoard() {
     }
 
     // 2. Backend Call
-    const response = await fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+    const response = await fetch(`http://127.0.0.1:8002/api/tasks/${task.id}/`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

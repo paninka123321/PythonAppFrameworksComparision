@@ -1,0 +1,5 @@
+@import './theme.css';
+
+/* small form tweaks */
+input{ display:block; width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit }
+button{ padding:8px 12px; border-radius:8px; border:none; cursor:pointer }

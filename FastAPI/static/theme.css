@@ -1,0 +1,22 @@
+/* Shared presentation theme for FastAPI static pages */
+:root{
+  --bg: #0f1724;
+  --surface: #111827;
+  --card: #0f2333;
+  --muted: #9aa4b2;
+  --text: #e6eef8;
+  --accent: #4f8cff;
+  --accent-2: #78a8ff;
+  --radius: 12px;
+}
+
+*{box-sizing:border-box}
+body{ margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:linear-gradient(180deg,var(--bg),#071027); color:var(--text) }
+.page-container{ max-width:1100px; margin:32px auto; padding:20px }
+.grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:18px }
+.card, .user-card{ background:linear-gradient(180deg,var(--card), rgba(15,23,36,0.9)); border-radius:var(--radius); padding:18px; box-shadow:0 6px 24px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03) }
+.user-title{ color:var(--accent); margin:0 0 8px 0 }
+.task-list{ list-style:none; padding:0; margin:0 }
+.task-item{ display:flex; justify-content:space-between; padding:10px; border-radius:8px; background:rgba(255,255,255,0.01); margin-bottom:10px }
+.status{ color:var(--muted); font-weight:600 }
+.empty{ color:var(--muted); font-style:italic }

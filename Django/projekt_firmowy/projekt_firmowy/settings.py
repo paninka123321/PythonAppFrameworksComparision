@@ -61,9 +61,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-# Zezwól na Twój frontend
+# Zezwól na Twoje frontendy (Vite dev servers)
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # port na którym działa React
+    "http://localhost:5173",  # Django React
+    "http://localhost:5174",  # Django React (alt port)
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:5174",
 ]
 
 ROOT_URLCONF = 'projekt_firmowy.urls'

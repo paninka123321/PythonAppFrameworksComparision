@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Zadań Użytkowników</title>
+    <link rel="stylesheet" href="{% static 'bbb/theme.css' %}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+
+    <div class="page-container">
+        <h1 class="page-title">📋 Przegląd Zadań Pracowników</h1>
+
+        <div class="grid">
+            {% for user in users %}
+                <div class="card user-card">
+                    <h2 class="user-title">👤 {{ user.first_name }} {{ user.last_name }} <small class="muted">(@{{ user.username }})</small></h2>
+
+                    <ul class="task-list">
+                        {% for task in user.tasks.all %}
+                            <li class="task-item">
+                                <span class="task-title">{{ task.title }}</span>
+                                <span class="status">{{ task.due_date|date:"Y-m-d" }}</span>
+                            </li>
+                        {% empty %}
+                            <li class="empty">Brak przypisanych zadań.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

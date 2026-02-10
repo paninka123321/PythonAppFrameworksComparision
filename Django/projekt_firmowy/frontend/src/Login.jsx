@@ -11,7 +11,7 @@ function Login({ onLogin }) {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:8000/api/token/", {
+      const res = await fetch("http://localhost:8002/api/token/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

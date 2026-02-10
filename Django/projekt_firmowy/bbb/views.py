@@ -3,6 +3,9 @@ from .models import Task, User
 from .serializers import TaskSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import render
+from django.contrib.auth.models import User
+
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
@@ -21,3 +24,13 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+def users_tasks_view(request):
+    # Pobieramy wszystkich userów
+    # Używamy prefetch_related('tasks'), żeby Django nie robiło 100 zapytań do bazy (optymalizacja)
+    users = User.objects.prefetch_related('tasks').all()
+    
+    context = {
+        'users': users
+    }
+    return render(request, 'users_tasks.html', context)

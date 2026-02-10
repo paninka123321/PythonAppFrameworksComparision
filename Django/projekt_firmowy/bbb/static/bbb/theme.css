@@ -1,0 +1,20 @@
+/* Theme for Django template pages (same variables as frontend) */
+:root{
+  --bg: #0f1724;
+  --surface: #111827;
+  --card: #0f2333;
+  --muted: #9aa4b2;
+  --text: #e6eef8;
+  --accent: #4f8cff;
+  --radius: 12px;
+}
+
+body{ background:linear-gradient(180deg,var(--bg),#071027); color:var(--text); font-family: Inter, system-ui, Arial, sans-serif; margin:0; }
+.page-container{ max-width:900px; margin:36px auto; padding:18px }
+.page-title{ text-align:center; color:var(--text); margin-bottom:18px }
+.user-card{ background: linear-gradient(180deg,var(--card), rgba(15,23,36,0.9)); padding:18px; border-radius:var(--radius); margin-bottom:20px; box-shadow:0 8px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03) }
+.user-title{ color:var(--accent); margin:0 0 8px 0 }
+.task-list{ list-style:none; padding:0; margin:0 }
+.task-item{ display:flex; justify-content:space-between; padding:10px; border-radius:8px; background:rgba(255,255,255,0.01); margin-bottom:10px }
+.status{ color:var(--muted); font-weight:600 }
+.empty{ color:var(--muted); font-style:italic }

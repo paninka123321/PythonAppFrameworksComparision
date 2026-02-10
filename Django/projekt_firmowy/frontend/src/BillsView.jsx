@@ -4,7 +4,7 @@ function BillsView() {
   const [bills, setBills] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/bills/")
+    fetch("http://127.0.0.1:8002/api/bills/")
       .then(res => res.json())
       .then(data => setBills(data));
   }, []);

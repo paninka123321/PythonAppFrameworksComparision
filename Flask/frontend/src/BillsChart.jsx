@@ -19,7 +19,7 @@ function BillsChart() {
     // 1. Pobieramy dane z Twojego Flaska
     // UWAGA: Tutaj na sztywno wpisałem pobieranie bez tokena dla testu.
     // Jeśli Twoje API wymaga logowania, musisz dodać nagłówek Authorization.
-    fetch("http://127.0.0.1:8000/api/bills/", {
+    fetch("http://127.0.0.1:8003/api/bills/", {
         method: "GET",
         headers: {
             // "Authorization": "Bearer TU_WPISZ_TOKEN_JESLI_MASZ",

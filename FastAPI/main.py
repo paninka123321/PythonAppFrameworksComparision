@@ -1,5 +1,8 @@
 import uvicorn
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
@@ -124,6 +127,10 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
 
 # --- APP SETUP ---
 app = FastAPI(title="Projekt Firmowy API")
+
+# Serve simple frontend templates and static files for presentation
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 # 1. MIDDLEWARE SESJI (Wymagane do logowania w Adminie)
 app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
@@ -334,6 +341,14 @@ async def get_bills(current_user: User = Depends(get_current_user), db: AsyncSes
     result = await db.execute(select(Bill).where(Bill.date >= date(2025, 1, 1), Bill.date <= date(2026, 12, 31)))
     return result.scalars().all()
 
+
+# --- SIMPLE HTML PANEL FOR PRESENTATION ---
+@app.get("/staff/tasks/", response_class=HTMLResponse)
+async def users_tasks_view(request: Request, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).options(selectinload(User.tasks)))
+    users = result.scalars().all()
+    return templates.TemplateResponse("users_tasks.html", {"request": request, "users": users})
+
 # --- STARTUP LOGIC ---
 @app.on_event("startup")
 async def startup():
@@ -373,4 +388,4 @@ async def startup():
             print("--- User Adam created ---")
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8001, reload=True)
