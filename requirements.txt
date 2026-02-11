@@ -1,0 +1,34 @@
+# Requirements for Django, FastAPI and Flask backends used in this workspace
+# Pin versions if you need reproducible installs; these are the packages referenced
+# across the three projects (Django, FastAPI, Flask).
+
+# --- Django backend ---
+Django==4.2.20
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+
+# --- FastAPI backend ---
+fastapi
+uvicorn[standard]
+sqlalchemy
+aiosqlite
+sqladmin
+python-jose
+passlib[bcrypt]
+
+# --- Flask backend ---
+Flask
+Flask-Cors
+Flask-JWT-Extended
+Flask-Admin
+Flask-Login
+Flask-SQLAlchemy
+flask-marshmallow
+marshmallow
+marshmallow-sqlalchemy
+
+# --- Optional / Utilities (handy to have) ---
+Jinja2
+
+# End of file
